@@ -1,0 +1,52 @@
+
+<view class="container">
+  
+  <view class="goods-image-container">
+    <image class="goods-image" src="{{goods.image}}" mode="aspectFill" bindtap="previewImage"></image>
+  </view>
+
+  
+  <view class="goods-info">
+    <view class="price-row">
+      <text class="goods-price">¥{{goods.price}}</text>
+      <text class="goods-stock">库存: {{goods.stock}}件</text>
+    </view>
+    <view class="goods-header">
+      <text class="goods-name">{{goods.name}}</text>
+      <text class="goods-game">{{goods.game}}</text>
+    </view>
+    <view class="goods-tags" wx:if="{{goods.tags.length > 0}}">
+      <text class="tag" wx:for="{{goods.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  
+  <view class="goods-section">
+    <view class="section-title">商品规格</view>
+    <view class="specs-list">
+      <view class="spec-item" wx:for="{{goods.specs}}" wx:key="name">
+        <text class="spec-name">{{item.name}}</text>
+        <text class="spec-value">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  
+  <view class="bottom-bar">
+    <view class="action-buttons">
+      <view class="action-item" bindtap="goToHome">
+        <image src="/images/icons/home.png"></image>
+        <text>首页</text>
+      </view>
+      <view class="action-item" bindtap="goToCart">
+        <image src="/images/icons/cart.png"></image>
+        <text>购物车</text>
+        <view class="cart-badge" wx:if="{{cartCount > 0}}">{{cartCount}}</view>
+      </view>
+    </view>
+    <view class="buy-buttons">
+      <button class="add-cart-btn" bindtap="addToCart">加入购物车</button>
+      <button class="buy-now-btn" bindtap="buyNow">立即购买</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+{
+  "name": "soul-shop-server",
+  "version": "1.0.0",
+  "description": "魂系列游戏周边商城后端服务",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+} 

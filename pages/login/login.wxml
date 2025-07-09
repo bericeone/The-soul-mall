@@ -1,0 +1,50 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px">
+    <view class="nav-title">登录</view>
+  </view>
+
+  <!-- 顶部图片 -->
+  <view class="logo-container">
+    <image class="logo" src="/images/login-banner.jpg" mode="aspectFill"></image>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="login-form">
+    <view class="form-title">欢迎登录</view>
+    
+    <!-- 用户名输入框 -->
+    <view class="input-group">
+      <image class="input-icon" src="/images/icons/user.png"></image>
+      <input 
+        class="input" 
+        type="text" 
+        placeholder="请输入用户名" 
+        value="{{username}}"
+        bindinput="inputUsername"
+      />
+    </view>
+
+    <!-- 密码输入框 -->
+    <view class="input-group">
+      <image class="input-icon" src="/images/icons/password.png"></image>
+      <input 
+        class="input" 
+        type="password" 
+        placeholder="请输入密码" 
+        value="{{password}}"
+        bindinput="inputPassword"
+      />
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn" bindtap="login">登 录</button>
+
+    <!-- 其他选项 -->
+    <view class="options">
+      <text class="option-text">忘记密码？</text>
+      <text class="option-text">注册账号</text>
+    </view>
+  </view>
+</view>

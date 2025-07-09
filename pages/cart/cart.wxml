@@ -1,0 +1,64 @@
+<!--pages/cart/cart.wxml-->
+<view class="container">
+  <!-- 购物车列表 -->
+  <view class="cart-list" wx:if="{{cartList.length > 0}}">
+    <view class="cart-item" wx:for="{{cartList}}" wx:key="id">
+      <!-- 选择框 -->
+      <view class="checkbox" bindtap="toggleSelect" data-id="{{item.id}}">
+        <image src="{{item.selected ? '/images/icons/checked.png' : '/images/icons/unchecked.png'}}"></image>
+      </view>
+      
+      <!-- 商品信息 -->
+      <view class="goods-info" bindtap="goToDetail" data-id="{{item.id}}">
+        <image class="goods-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="goods-detail">
+          <text class="goods-name">{{item.name}}</text>
+          <text class="goods-game">{{item.game}}</text>
+          <view class="price-count">
+            <text class="goods-price">¥{{item.price}}</text>
+            <!-- 数量控制 -->
+            <view class="count-control">
+              <view class="count-btn {{item.quantity <= 1 ? 'disabled' : ''}}" 
+                    catchtap="decreaseCount" data-id="{{item.id}}">-</view>
+              <input class="count-input" type="number" value="{{item.quantity}}" 
+                     bindblur="updateCount" data-id="{{item.id}}"/>
+              <view class="count-btn {{item.quantity >= item.stock ? 'disabled' : ''}}" 
+                    catchtap="increaseCount" data-id="{{item.id}}">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 删除按钮 -->
+      <view class="delete-btn" catchtap="deleteItem" data-id="{{item.id}}">
+        <image src="/images/icons/delete.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空购物车提示 -->
+  <view class="empty-cart" wx:else>
+    <image src="/images/icons/empty-cart.png"></image>
+    <text>购物车是空的</text>
+    <button class="go-shopping" bindtap="goToHome">去逛逛</button>
+  </view>
+
+  <!-- 底部结算栏 -->
+  <view class="bottom-bar" wx:if="{{cartList.length > 0}}">
+    <view class="select-all" bindtap="toggleSelectAll">
+      <image src="{{allSelected ? '/images/icons/checked.png' : '/images/icons/unchecked.png'}}"></image>
+      <text>全选</text>
+    </view>
+    <view class="total-info">
+      <view class="total-price">
+        <text>合计：</text>
+        <text class="price">¥{{totalPrice}}</text>
+      </view>
+      <text class="total-desc">不含运费</text>
+    </view>
+    <button class="checkout-btn {{selectedCount > 0 ? '' : 'disabled'}}" 
+            bindtap="checkout" disabled="{{selectedCount === 0}}">
+      结算({{selectedCount}})
+    </button>
+  </view>
+</view> 
